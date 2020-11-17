@@ -1,7 +1,7 @@
 trigger:
 - master
 
-strategy:
+# strategy:
   # matrix:
   #   linux:
   #     operatingSystem: 'ubuntu-latest'
