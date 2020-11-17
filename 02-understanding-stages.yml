@@ -19,27 +19,33 @@ stages:
   - job: SecondJob
     steps:
     - bash: echo build second job
-- stage: DevDeploy
-  variables: 
-   environment: Dev
-  dependsOn: Build
-  jobs:
-  - job: DevDeployJob
-    steps:
-    - bash: echo $(environment)DeployJob
-- stage: QADeploy
-  variables: 
-   environment: QA
-  dependsOn: Build
-  jobs:
-  - job:
-    steps:
-    - bash: echo something happened with $(environment) deploy
-- stage: ProdDeploy
-  dependsOn:
-  - DevDeploy
-  - QADeploy
-  jobs:
-  - job: ProdDeployJob
-    steps:
-    - bash: echo this is prod deploy step
+    - bash: $(Build.BuildNumber)
+    - bash: $(Build.BuildId)
+    - bash: $(Build.SourceBranchName)
+    - bash: $(Build.SourcesDirectory)
+    - bash: ls -R $(System.DefaultWorkingDirectory)
+    - bash: echo $(Build.ArtiactStagingDirectory)
+# - stage: DevDeploy
+#   variables: 
+#    environment: Dev
+#   dependsOn: Build
+#   jobs:
+#   - job: DevDeployJob
+#     steps:
+#     - bash: echo $(environment)DeployJob
+# - stage: QADeploy
+#   variables: 
+#    environment: QA
+#   dependsOn: Build
+#   jobs:
+#   - job:
+#     steps:
+#     - bash: echo something happened with $(environment) deploy
+# - stage: ProdDeploy
+#   dependsOn:
+#   - DevDeploy
+#   - QADeploy
+#   jobs:
+#   - job: ProdDeployJob
+#     steps:
+#     - bash: echo this is prod deploy step
