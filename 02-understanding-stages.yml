@@ -16,6 +16,10 @@ stages:
     steps:
     - bash: echo build first job
     - bash: echo $(PipelineLevelVariable)
+    - bash: java -version
+    - bash: node --version
+    - bash: python --version
+    - bash: mvn -version
   - job: SecondJob
     steps:
     - bash: echo build second job
@@ -24,7 +28,15 @@ stages:
     - bash: echo $(Build.SourceBranchName)
     - bash: echo $(Build.SourcesDirectory)
     - bash: ls -R $(System.DefaultWorkingDirectory)
-    - bash: echo $(Build.ArtiactStagingDirectory)
+    - bash: ls -R $(Build.ArtiactStagingDirectory)
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: '$(System.DefaultWorkingDirectory)'
+        Contents: |
+          **/*.yaml
+          **/*.tf
+        TargetFolder: '$(Build.ArtiactStagingDirectory)'
+    - bash: ls -R $(Build.ArtiactStagingDirectory)
 # - stage: DevDeploy
 #   variables: 
 #    environment: Dev
