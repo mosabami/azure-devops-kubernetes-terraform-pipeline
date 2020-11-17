@@ -19,10 +19,10 @@ stages:
   - job: SecondJob
     steps:
     - bash: echo build second job
-    - bash: $(Build.BuildNumber)
-    - bash: $(Build.BuildId)
-    - bash: $(Build.SourceBranchName)
-    - bash: $(Build.SourcesDirectory)
+    - bash: echo $(Build.BuildNumber)
+    - bash: echo $(Build.BuildId)
+    - bash: echo $(Build.SourceBranchName)
+    - bash: echo $(Build.SourcesDirectory)
     - bash: ls -R $(System.DefaultWorkingDirectory)
     - bash: echo $(Build.ArtiactStagingDirectory)
 # - stage: DevDeploy
