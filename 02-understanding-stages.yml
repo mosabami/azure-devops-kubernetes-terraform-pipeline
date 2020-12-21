@@ -20,49 +20,49 @@ stages:
     - bash: node --version
     - bash: python --version
     - bash: mvn -version
-  - job: SecondJob
-    steps:
-    - bash: echo build second job
-    - bash: echo $(Build.BuildNumber)
-    - bash: echo $(Build.BuildId)
-    - bash: echo $(Build.SourceBranchName)
-    - bash: echo $(Build.SourcesDirectory)
-    - bash: ls -R $(System.DefaultWorkingDirectory)
-    - bash: ls -R $(Build.ArtifactStagingDirectory)
-    - task: CopyFiles@2
-      inputs:
-        SourceFolder: '$(System.DefaultWorkingDirectory)'
-        Contents: |
-          **/*.yaml
-          **/*.tf
-        TargetFolder: '$(Build.ArtifactStagingDirectory)'
-    - bash: ls -R $(Build.ArtifactStagingDirectory)
-    - task: PublishBuildArtifacts@1
-      inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'drop'
-        publishLocation: 'Container'
-- stage: DevDeploy
-  variables: 
-   environment: Dev
-  dependsOn: Build
-  jobs:
-  - job: DevDeployJob
-    steps:
-    - bash: echo $(environment)DeployJob
-- stage: QADeploy
-  variables: 
-   environment: QA
-  dependsOn: Build
-  jobs:
-  - job:
-    steps:
-    - bash: echo something happened with $(environment) deploy
-- stage: ProdDeploy
-  dependsOn:
-  - DevDeploy
-  - QADeploy
-  jobs:
-  - job: ProdDeployJob
-    steps:
-    - bash: echo this is prod deploy step
+  # - job: SecondJob
+  #   steps:
+  #   - bash: echo build second job
+  #   - bash: echo $(Build.BuildNumber)
+  #   - bash: echo $(Build.BuildId)
+  #   - bash: echo $(Build.SourceBranchName)
+  #   - bash: echo $(Build.SourcesDirectory)
+  #   - bash: ls -R $(System.DefaultWorkingDirectory)
+  #   - bash: ls -R $(Build.ArtifactStagingDirectory)
+  #   - task: CopyFiles@2
+  #     inputs:
+  #       SourceFolder: '$(System.DefaultWorkingDirectory)'
+  #       Contents: |
+  #         **/*.yaml
+  #         **/*.tf
+  #       TargetFolder: '$(Build.ArtifactStagingDirectory)'
+  #   - bash: ls -R $(Build.ArtifactStagingDirectory)
+  #   - task: PublishBuildArtifacts@1
+  #     inputs:
+  #       PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+  #       ArtifactName: 'drop'
+  #       publishLocation: 'Container'
+# - stage: DevDeploy
+#   variables: 
+#    environment: Dev
+#   dependsOn: Build
+#   jobs:
+#   - job: DevDeployJob
+#     steps:
+#     - bash: echo $(environment)DeployJob
+# - stage: QADeploy
+#   variables: 
+#    environment: QA
+#   dependsOn: Build
+#   jobs:
+#   - job:
+#     steps:
+#     - bash: echo something happened with $(environment) deploy
+# - stage: ProdDeploy
+#   dependsOn:
+#   - DevDeploy
+#   - QADeploy
+#   jobs:
+#   - job: ProdDeployJob
+#     steps:
+#     - bash: echo this is prod deploy step
