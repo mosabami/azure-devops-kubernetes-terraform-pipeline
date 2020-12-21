@@ -55,3 +55,14 @@ create table exchange_value
 ```
 docker container run --publish 8000:8000 in28min/currency-exchange:0.0.1-SNAPSHOT
 ```
+
+#### To copy files
+type copy file
+
+### to share content between stages use artifacts. 
+eg build stage have output that you want to share with dev stage
+type publish select publish build artifacts
+click add
+
+
+
