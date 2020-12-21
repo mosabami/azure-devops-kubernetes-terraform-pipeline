@@ -42,27 +42,27 @@ stages:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'drop'
         publishLocation: 'Container'
-# - stage: DevDeploy
-#   variables: 
-#    environment: Dev
-#   dependsOn: Build
-#   jobs:
-#   - job: DevDeployJob
-#     steps:
-#     - bash: echo $(environment)DeployJob
-# - stage: QADeploy
-#   variables: 
-#    environment: QA
-#   dependsOn: Build
-#   jobs:
-#   - job:
-#     steps:
-#     - bash: echo something happened with $(environment) deploy
-# - stage: ProdDeploy
-#   dependsOn:
-#   - DevDeploy
-#   - QADeploy
-#   jobs:
-#   - job: ProdDeployJob
-#     steps:
-#     - bash: echo this is prod deploy step
+- stage: DevDeploy
+  variables: 
+   environment: Dev
+  dependsOn: Build
+  jobs:
+  - job: DevDeployJob
+    steps:
+    - bash: echo $(environment)DeployJob
+- stage: QADeploy
+  variables: 
+   environment: QA
+  dependsOn: Build
+  jobs:
+  - job:
+    steps:
+    - bash: echo something happened with $(environment) deploy
+- stage: ProdDeploy
+  dependsOn:
+  - DevDeploy
+  - QADeploy
+  jobs:
+  - job: ProdDeployJob
+    steps:
+    - bash: echo this is prod deploy step
