@@ -64,5 +64,17 @@ eg build stage have output that you want to share with dev stage
 type publish select publish build artifacts
 click add
 
+## Azure terraform section
+azure login
 
+
+to create a user using command line
+az ad(active directory) sp(service) create-for-rbac(role based access control) --role="Contributor" --scopes="/subscriptions/cd58d5b9-cda2-48db-971c-374db9f80bc8"
+
+### get secure credentials
+az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/cd58d5b9-cda2-48db-971c-374db9f80bc8"
+
+#get ssh key files
+ssh-keygen -m PEM -t rsa(encryption algorithm) -b 4096 (strength of the algorithm how many bits)
+ssh-keygen -m PEM -t rsa -b 4096 
 
