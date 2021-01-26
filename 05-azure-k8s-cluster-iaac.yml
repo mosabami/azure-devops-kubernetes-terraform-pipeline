@@ -7,10 +7,10 @@ pool:
 steps:
 - script: echo k8s Terraform Azure Hello, world!
   displayName: 'Run a one-line script'
-  - task: DownloadSecureFile@1
-    name: publickey
-    inputs:
-      secureFile: 'azure_rsa.pub'
+- task: DownloadSecureFile@1
+  name: publickey
+  inputs:
+    secureFile: 'azure_rsa.pub'
 
 - task: TerraformTaskV1@0
   inputs:
