@@ -1,0 +1,28 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- script: echo k8s Terraform Azure Hello, world!
+  displayName: 'Run a one-line script'
+  - task: DownloadSecureFile@1
+    name: publickey
+    inputs:
+      secureFile: 'azure_rsa.pub'
+
+- task: TerraformTaskV1@0
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
+    commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilePath)'
+    backendServiceArm: 'azure-resource-manager-visual-studio-enterprise-sub'
+    backendAzureRmResourceGroupName: 'terraform-backend-rg'
+    backendAzureRmStorageAccountName: 'storageaccountayoayo'
+    backendAzureRmContainerName: 'storageaccountayocontainer'
+    backendAzureRmKey: 'kubernetes-dev.tfstate'
+
+
+
