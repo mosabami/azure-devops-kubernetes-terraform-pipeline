@@ -19,10 +19,14 @@ steps:
     workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
     commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilePath)'
     backendServiceArm: 'azure-resource-manager-visual-studio-enterprise-sub'
+    ensureBackend: true
     backendAzureRmResourceGroupName: 'terraform-backend-rg'
     backendAzureRmStorageAccountName: 'storeacctayoayoxxxyz'
     backendAzureRmContainerName: 'storageaccountayocontainer'
+    backendAzureRmResourceGroupLocation: 'westeurope'
     backendAzureRmKey: 'kubernetes-dev.tfstate'
+    allowTelemetryCollection: true
+    
 
 
 
