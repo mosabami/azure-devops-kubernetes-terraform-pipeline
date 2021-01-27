@@ -20,7 +20,7 @@ steps:
     commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilePath)'
     backendServiceArm: 'azure-resource-manager-visual-studio-enterprise-sub'
     backendAzureRmResourceGroupName: 'terraform-backend-rg'
-    backendAzureRmStorageAccountName: 'storageaccountayoayo'
+    backendAzureRmStorageAccountName: 'storageaccountayoayoxxxyz'
     backendAzureRmContainerName: 'storageaccountayocontainer'
     backendAzureRmKey: 'kubernetes-dev.tfstate'
 
